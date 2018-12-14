@@ -1,4 +1,5 @@
-APIVER ?= 1.31.0.33
+APIVER ?= 1.31.2.40
+APIVER_SHORT ?= 1.31.2
 PYTHON ?= $(shell { command -v python3 || command -v python; } 2>/dev/null)
 
 .PHONY: all mercuryapi install
@@ -18,10 +19,10 @@ mercuryapi: mercuryapi-$(APIVER)/.done
 	mkdir -p build/mercuryapi/lib
 	find mercuryapi-*/c/src/api -type f -name '*.a' -or -name '*.so.1' | xargs cp -t build/mercuryapi/lib
 
-mercuryapi-$(APIVER)/.done: mercuryapi-$(APIVER).zip
-	unzip mercuryapi-$(APIVER).zip
+mercuryapi-$(APIVER)/.done: mercuryapi-$(APIVER_SHORT).zip
+	unzip mercuryapi-$(APIVER_SHORT).zip
 	patch -p0 -d mercuryapi-$(APIVER) < mercuryapi.patch
 	touch mercuryapi-$(APIVER)/.done
 
-mercuryapi-$(APIVER).zip:
-	wget https://www.jadaktech.com/wp-content/uploads/2018/06/mercuryapi-$(APIVER).zip
+mercuryapi-$(APIVER_SHORT).zip:
+	wget https://www.jadaktech.com/wp-content/uploads/2018/11/mercuryapi-$(APIVER_SHORT).zip
