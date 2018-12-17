@@ -76,6 +76,9 @@ setup(
     cmdclass={
         'build': CustomBuild,
     },
+    install_requires=[
+          'requests==2.21.0',
+      ],
     ext_modules=[Extension("mercury",
                            sources=["mercury.c"],
                            libraries=["mercuryapi", "ltkc", "ltkctm"],
